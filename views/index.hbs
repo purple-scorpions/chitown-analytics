@@ -47,6 +47,26 @@
       <li id="info_card_btn"><i class="fa fa-info"></i></li>
       <li id="map_card_btn"><i class="fa fa-map"></i></li>
       <li id="metric_card_btn"><i class="fa fa-area-chart"></i></li>
+      <li>
+        <select id="primary_type">
+          <option value="assault">Assault</option>
+          <option value="battery">Battery</option>
+          <option value="burglary">Burglary</option>
+          <option value="criminal sexual assault">Criminal Sexual Assault</option>
+          <option value="homicide">Homicide</option>
+          <option value="interference with public officer">Interference with Public Officer</option>
+          <option value="kidnapping">Kidnapping</option>
+          <option value="motor vehicle theft">Motor Vehicle Theft</option>
+          <option value="narcotics">Narcotics</option>
+          <option value="offense involving children">Offense Involving Children</option>
+          <option value="robbery">Robbery</option>
+          <option value="theft">Theft</option>
+        </select>
+        <input type="date" id="start_date">
+        <input type="date" id="end_date">
+        <button id="submit">Submit</button>
+        <button id="clear">Clear</button>
+      </li>
     </ul>
   </div>
   <div id="data_layers_container">
@@ -56,14 +76,14 @@
       </div> -->
       <div id="info_display_container">
         <ol class="noliStyle infoOLs">
-          <li class="flL">Case Num</li>
+          <li class="flL" id="csnm">Case Num</li>
           <li class="hideThis">&nbs;</li>
-          <li class="flR">Crime</li>
+          <li class="flR" id="crm">Crime</li>
         </ol>
         <ol class="noliStyle infoOLs">
-          <li>Date</li>
-          <li>Location</li>
-          <li>crime subtype</li>
+          <li id="dt">Date</li>
+          <li id="lctn">Location</li>
+          <li id="crmsbtyp">crime subtype</li>
         </ol>
         <div id="additional_info_container">
           <div id="desc_container">
@@ -83,76 +103,14 @@
       </div> -->
     </div>
     <div id="map_card" class="dataLayers">
-      <div id="drop_down">
-          <select name="type" id="type">
-            <!-- <option value="all">ALL TYPES</option> -->
-          </select>
-          <select name="description" id="description">
-            <option value="All Subtypes">ALL SUBTYPES</option>
-          </select>
-          <label for="startDate">Start Date</label>
-        <input type="date" name='startDate' id='startDate' value='2015-12-25'></input>
-        <label for="endDate">End Date</label>
-        <input type="date" name='endDate' id='endDate'></input>
-        <form id="saveMapFilter" action="/account/savemap" method="post">
-          <input id="hiddenPrimaryCrime" type="hidden" name="primarycrime" value="">
-          <input id="hiddenSubcrime" type="hidden" name="subcrime" value="">
-          <input id="hiddenTimeStart" type="hidden" name="timeStart" value="">
-          <input id="hiddenTimeEnd" type="hidden" name="timeEnd" value="">
-          <input type="submit" value="Save Filter">
-        </form>
-      </div>
       <div id="map"></div>
     </div>
     <div id="metric_card" class="dataLayers">
-      <div id="graph_form">
-          <h5>Offense</h5>
-          <select id="primary_type">
-            <option value="assault">Assault</option>
-            <option value="battery">Battery</option>
-            <option value="burglary">Burglary</option>
-            <option value="criminal sexual assault">Criminal Sexual Assault</option>
-            <option value="homicide">Homicide</option>
-            <option value="interference with public officer">Interference with Public Officer</option>
-            <option value="kidnapping">Kidnapping</option>
-            <option value="motor vehicle theft">Motor Vehicle Theft</option>
-            <option value="narcotics">Narcotics</option>
-            <option value="offense involving children">Offense Involving Children</option>
-            <option value="robbery">Robbery</option>
-            <option value="theft">Theft</option>
-          </select>
-          <h5>Period Start Date</h5>
-          <input type="date" id="start_date">
-        </p>
-        <p>
-          <h5>Period End Date</h5>
-          <input type="date" id="end_date">
-        </p>
-        <p>
-          <button id="submit">Submit</button>
-          <button id="clear">Clear</button>
-        </p>
-      </div>
+
       <div id="chart_title"></div>
       <div id="chart_div"></div>
     </div>
   </div>
 </div>
-
-
-<script type="text/javascript">
-grabProperty('description','hiddenPrimaryCrime','description option:selected');
-grabProperty('type','hiddenSubcrime','type option:selected');
-grabProperty('startDate','hiddenTimeStart','startDate');
-grabProperty('endDate','hiddenTimeEnd','endDate');
-
-function grabProperty(idToWatch, idToGet, idToGive) {
-  $('#'+idToWatch).on('change', function() {
-    $('#'+idToGet).prop('value', $('#'+idToGive).val());
-  });
-};
-</script>
-
-
 
 <!-- Fin of Data Layers -->
