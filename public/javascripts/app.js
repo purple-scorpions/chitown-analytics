@@ -59,11 +59,9 @@ document.onreadystatechange = function () {
       $.ajax(fuckBackbone);
     };
 
-    // clear.onclick = function() {
-    //   var chart = $('#chart_div').highcharts();
-    //   chart.destroy();
-    //   chart = null;
-    // };
+    clear.onclick = function() {
+      $('#chart_div').highcharts().destroy();
+    };
   };
 };
 
